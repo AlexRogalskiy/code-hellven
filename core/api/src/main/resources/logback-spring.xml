@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	<property name="CONSOLE_LOG_PATTERN"
+			  value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%1.14X{principal:-}]) %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+	<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
+	<property name="FILE_LOG_PATTERN"
+			  value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%X{principal}] [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+	<property resource="application.properties"/>
+
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+	<springProfile name="dev">
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+	</springProfile>
+	<springProfile name="integration, prod">
+		<if condition='p("logging.mode").contains("logstash")'>
+			<then>
+				<appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+					<keepAliveDuration>5 minutes</keepAliveDuration>
+					<reconnectionDelay>10 second</reconnectionDelay>
+					<waitStrategyType>sleeping</waitStrategyType>
+					<ringBufferSize>16384</ringBufferSize>
+					<destination>${logstash.servers}</destination>
+					<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+						<providers>
+							<mdc/> <!-- MDC variables on the Thread will be written as JSON fields-->
+							<context/> <!--Outputs entries from logback's context -->
+							<logLevel/>
+							<loggerName/>
+
+							<threadName/>
+							<message/>
+
+							<logstashMarkers/>
+							<arguments/>
+
+							<stackTrace>
+								<fieldName>stack_trace</fieldName>
+								<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+									<exclude>net\.sf\.cglib\..*</exclude>
+									<maxDepthPerThrowable>15</maxDepthPerThrowable>
+									<rootCauseFirst>true</rootCauseFirst>
+								</throwableConverter>
+							</stackTrace>
+						</providers>
+					</encoder>
+				</appender>
+			</then>
+			<else>
+				<include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
+			</else>
+		</if>
+	</springProfile>
+
+	<springProfile name="dev">
+		<logger name="com.shadov.codehellven" level="DEBUG" additivity="false">
+			<appender-ref ref="CONSOLE"/>
+		</logger>
+	</springProfile>
+	<springProfile name="integration, prod">
+		<logger name="com.shadov.codehellven" level="DEBUG" additivity="false">
+			<if condition='property("logging.mode").contains("logstash")'>
+				<then>
+					<appender-ref ref="STASH"/>
+				</then>
+				<else>
+					<appender-ref ref="CONSOLE"/>
+				</else>
+			</if>
+			<appender-ref ref="CONSOLE"/>
+		</logger>
+	</springProfile>
+
+	<root level="ERROR">
+		<springProfile name="dev">
+			<appender-ref ref="CONSOLE"/>
+		</springProfile>
+		<springProfile name="integration, prod">
+			<if condition='property("logging.mode").contains("logstash")'>
+				<then>
+					<appender-ref ref="STASH"/>
+				</then>
+				<else>
+					<appender-ref ref="CONSOLE"/>
+				</else>
+			</if>
+			<appender-ref ref="CONSOLE"/>
+		</springProfile>
+	</root>
+</configuration>
