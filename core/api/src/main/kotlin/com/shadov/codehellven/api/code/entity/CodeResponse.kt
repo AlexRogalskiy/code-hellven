@@ -25,7 +25,7 @@ internal data class CodeResponse(
         @Indexed
         val completed: Boolean,
         @Indexed
-        var language: Languages,
+        val language: Languages,
         val output: String,
         val errorStream: String,
         val runningTime: Long,

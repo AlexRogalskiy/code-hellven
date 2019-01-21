@@ -1,3 +1,3 @@
 package com.shadov.codehellven.api.task.domain.exception
 
-internal class TaskUpdateException : RuntimeException("Exception occured during task update")
+internal class TaskUpdateException(override val message: String = "Exception occured during task update") : RuntimeException(message)

@@ -16,27 +16,27 @@ import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.hateoas.Link
 
 @Document
-internal data class Task(
+internal open class Task(
         @Id
-        val taskId: String? = null,
+        var taskId: String? = null,
         @Indexed
         @DBRef
-        val creator: User,
+        var creator: User,
         @Indexed(unique = true)
         val name: String,
         val description: String,
         val methodSignature: String,
         val className: String,
-        val tags: Set<String> = Sets.newHashSet(),
-        val active: Boolean = false,
-        val failedAttempts: Int = 0,
-        val likeCount: Int = 0,
+        var tags: Set<String> = Sets.newHashSet(),
+        var active: Boolean = false,
+        var failedAttempts: Int = 0,
+        var likeCount: Int = 0,
         @Indexed
-        val difficulty: Difficulty,
-        @DBRef
-        val solutions: Set<Solution> = Sets.newHashSet(),
-        val tests: Map<Languages, String> = Maps.newHashMap(),
-        val initialCode: Map<Languages, String> = Maps.newHashMap()
+        var difficulty: Difficulty,
+        @DBRef(lazy = true)
+        var solutions: Set<Solution> = Sets.newHashSet(),
+        var tests: Map<Languages, String> = Maps.newHashMap(),
+        var initialCode: Map<Languages, String> = Maps.newHashMap()
 ) {
     fun getReputationWorth(): Int {
         return difficulty.reputation()

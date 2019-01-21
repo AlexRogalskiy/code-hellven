@@ -13,18 +13,18 @@ import org.springframework.hateoas.Link
 import java.time.LocalDateTime
 
 @Document
-internal data class User(
+internal open class User(
         @Id
-        val userId: String? = null,
-        @DBRef
-        val completedTasks: Set<Task> = Sets.newHashSet(),
-        @DBRef
-        val likedTasks: Set<Task> = Sets.newHashSet(),
-        @DBRef
-        val givenUpTasks: Set<Task> = Sets.newHashSet(),
+        var userId: String? = null,
+        @DBRef(lazy = true)
+        var completedTasks: Set<Task> = Sets.newHashSet(),
+        @DBRef(lazy = true)
+        var likedTasks: Set<Task> = Sets.newHashSet(),
+        @DBRef(lazy = true)
+        var givenUpTasks: Set<Task> = Sets.newHashSet(),
         @Indexed(unique = true)
         val name: String,
-        val lastLoginDate: LocalDateTime = LocalDateTime.now()
+        var lastLoginDate: LocalDateTime = LocalDateTime.now()
 ) {
     fun getReputation(): Int {
         return completedTasks.map(Task::getReputationWorth).sum()

@@ -5,5 +5,5 @@ import com.shadov.codehellven.api.task.entity.Task
 import io.vavr.control.Either
 
 internal interface TaskApi {
-    fun failedAttempt(task: Task): Either<TaskUpdateException, Task>
+    fun failure(taskId: String): Either<TaskUpdateException, Task>
 }

@@ -23,5 +23,8 @@ internal interface SolutionRepository : MongoRepository<Solution, String> {
 
     @RestResource
     override fun findAll(page: Pageable): Page<Solution>
+
+    @RestResource
+    override fun deleteById(id: String)
 }
 

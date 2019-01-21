@@ -42,4 +42,7 @@ internal interface TaskRepository : MongoRepository<Task, String> {
 
     @RestResource
     override fun <S : Task> save(task: S): S
+
+    @RestResource
+    override fun deleteById(id: String)
 }
