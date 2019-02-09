@@ -1,0 +1,72 @@
+scalar LocalDateTime
+
+type Query {
+    # Find user by name
+    user(name: String!): User
+
+    # Find tasks created by user
+    createdBy(creator: String!): [Task]
+
+    # Find tasks completedBy by user
+    completedBy(completedBy: String!): [Task]
+
+    # Find all solutions of user
+    userSolutions(user: String!): [Solution]
+
+    # Find all solutions for task
+    taskSolutions(task: String!): [Solution]
+}
+
+type User {
+    name: String!
+
+    lastLoginDate: LocalDateTime!
+
+   # reputation: Int!
+
+   # completedTasks: [Task]
+
+   # likedTasks: [Task]
+
+   # givenUpTasks: [Task]
+}
+
+type Task {
+    #creator: User!
+
+    name: String!
+
+  #  description: String!
+
+  #  tags: [String]
+
+  #  active: Boolean!
+
+  #  failedAttempts: Int!
+
+ #   likeCount: Int!
+
+   # difficulty: Difficulty!
+
+ #   solutions: [Solution]
+}
+
+type Solution {
+    code: String!
+
+   # runningTime: Int!
+
+   # language: Language!
+
+   # user: User!
+
+   # task: Task!
+}
+
+enum Difficulty {
+    STARTING, EASY, MEDIUM, HARD, GOD
+}
+
+enum Language {
+    JAVA, SCALA
+}

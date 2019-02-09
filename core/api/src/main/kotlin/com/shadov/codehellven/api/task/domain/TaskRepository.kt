@@ -1,48 +1,25 @@
 package com.shadov.codehellven.api.task.domain
 
-import com.shadov.codehellven.api.task.entity.Task
-import com.shadov.codehellven.api.user.entity.User
+import com.shadov.codehellven.api.task.entity.TaskEntity
+import com.shadov.codehellven.api.user.entity.UserEntity
 import com.shadov.codehellven.common.model.Difficulty
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.mongodb.repository.MongoRepository
-import org.springframework.data.mongodb.repository.Query
-import org.springframework.data.rest.core.annotation.RepositoryRestResource
-import org.springframework.data.rest.core.annotation.RestResource
 import java.util.*
 
-@RepositoryRestResource
-internal interface TaskRepository : MongoRepository<Task, String> {
-    @RestResource
-    fun findByNameIgnoreCase(name: String): Optional<Task>
+internal interface TaskRepository : MongoRepository<TaskEntity, String> {
+    fun findByNameIgnoreCase(name: String): Optional<TaskEntity>
 
-    @RestResource
-    fun findByNameStartingWithIgnoreCase(name: String, page: Pageable): Page<Task>
+    fun findByNameStartingWithIgnoreCase(name: String, page: Pageable): Page<TaskEntity>
 
-    @RestResource
-    fun findByDescriptionIgnoreCase(description: String, pageable: Pageable): Page<Task>
+    fun findByDescriptionIgnoreCase(description: String, pageable: Pageable): Page<TaskEntity>
 
-    @RestResource
-    fun findByCreatorIgnoreCase(creator: User, pageable: Pageable): Page<Task>
+    fun findByCreatorIgnoreCase(creator: UserEntity, pageable: Pageable): Page<TaskEntity>
 
-    @RestResource
-    fun findByDifficulty(difficulty: Difficulty, pageable: Pageable): Page<Task>
+    fun findByDifficulty(difficulty: Difficulty, pageable: Pageable): Page<TaskEntity>
 
-    @RestResource
-    fun findTop10ByOrderByCompletedCountDesc(): List<Task>
+    fun findTop10ByOrderByCompletedCountDesc(): List<TaskEntity>
 
-    @RestResource
-    fun findByActiveIsTrue(pageable: Pageable): Page<Task>
-
-    @RestResource
-    override fun findById(id: String): Optional<Task>
-
-    @RestResource
-    override fun findAll(page: Pageable): Page<Task>
-
-    @RestResource
-    override fun <S : Task> save(task: S): S
-
-    @RestResource
-    override fun deleteById(id: String)
+    fun findByActiveIsTrue(pageable: Pageable): Page<TaskEntity>
 }
