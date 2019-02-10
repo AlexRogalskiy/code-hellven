@@ -14,84 +14,57 @@
 
 	<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
-	<springProfile name="dev">
-		<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-	</springProfile>
 	<springProfile name="integration, prod">
-		<if condition='p("logging.mode").contains("logstash")'>
-			<then>
-				<appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-					<keepAliveDuration>5 minutes</keepAliveDuration>
-					<reconnectionDelay>10 second</reconnectionDelay>
-					<waitStrategyType>sleeping</waitStrategyType>
-					<ringBufferSize>16384</ringBufferSize>
-					<destination>${logstash.servers}</destination>
-					<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-						<providers>
-							<mdc/> <!-- MDC variables on the Thread will be written as JSON fields-->
-							<context/> <!--Outputs entries from logback's context -->
-							<logLevel/>
-							<loggerName/>
+		<appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+			<keepAliveDuration>5 minutes</keepAliveDuration>
+			<reconnectionDelay>10 second</reconnectionDelay>
+			<waitStrategyType>sleeping</waitStrategyType>
+			<ringBufferSize>16384</ringBufferSize>
+			<destination>${logstash.servers}</destination>
+			<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+				<providers>
+					<mdc/> <!-- MDC variables on the Thread will be written as JSON fields-->
+					<context/> <!--Outputs entries from logback's context -->
+					<logLevel/>
+					<loggerName/>
 
-							<threadName/>
-							<message/>
+					<threadName/>
+					<message/>
 
-							<logstashMarkers/>
-							<arguments/>
+					<logstashMarkers/>
+					<arguments/>
 
-							<stackTrace>
-								<fieldName>stack_trace</fieldName>
-								<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
-									<exclude>net\.sf\.cglib\..*</exclude>
-									<maxDepthPerThrowable>15</maxDepthPerThrowable>
-									<rootCauseFirst>true</rootCauseFirst>
-								</throwableConverter>
-							</stackTrace>
-						</providers>
-					</encoder>
-				</appender>
-			</then>
-			<else>
-				<include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
-			</else>
-		</if>
+					<stackTrace>
+						<fieldName>stack_trace</fieldName>
+						<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+							<exclude>net\.sf\.cglib\..*</exclude>
+							<maxDepthPerThrowable>15</maxDepthPerThrowable>
+							<rootCauseFirst>true</rootCauseFirst>
+						</throwableConverter>
+					</stackTrace>
+				</providers>
+			</encoder>
+		</appender>
 	</springProfile>
 
 	<springProfile name="dev">
 		<logger name="com.shadov.codehellven" level="DEBUG" additivity="false">
 			<appender-ref ref="CONSOLE"/>
 		</logger>
-	</springProfile>
-	<springProfile name="integration, prod">
-		<logger name="com.shadov.codehellven" level="DEBUG" additivity="false">
-			<if condition='property("logging.mode").contains("logstash")'>
-				<then>
-					<appender-ref ref="STASH"/>
-				</then>
-				<else>
-					<appender-ref ref="CONSOLE"/>
-				</else>
-			</if>
+		<logger name="com.shadov.codehellven.api.code" level="DEBUG" additivity="false">
 			<appender-ref ref="CONSOLE"/>
 		</logger>
 	</springProfile>
-
-	<root level="ERROR">
-		<springProfile name="dev">
+	<springProfile name="integration, prod">
+		<logger name="com.shadov.codehellven" level="DEBUG" additivity="false">
+			<appender-ref ref="STASH"/>
 			<appender-ref ref="CONSOLE"/>
-		</springProfile>
-		<springProfile name="integration, prod">
-			<if condition='property("logging.mode").contains("logstash")'>
-				<then>
-					<appender-ref ref="STASH"/>
-				</then>
-				<else>
-					<appender-ref ref="CONSOLE"/>
-				</else>
-			</if>
+		</logger>
+		<logger name="com.shadov.codehellven.api.code" level="DEBUG" additivity="false">
+			<appender-ref ref="STASH"/>
 			<appender-ref ref="CONSOLE"/>
-		</springProfile>
-	</root>
+		</logger>
+	</springProfile>
 
 	<jmxConfigurator/>
 </configuration>

@@ -11,6 +11,11 @@
 
 	<artifactId>common</artifactId>
 
+	<properties>
+		<ch.qos.logback.version>1.2.3</ch.qos.logback.version>
+		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
+	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -64,6 +69,27 @@
 			<groupId>com.github.javaparser</groupId>
 			<artifactId>javaparser-core</artifactId>
 			<version>3.5.8</version>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-logback-encoder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.18</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${ch.qos.logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${ch.qos.logback.version}</version>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 </project>
