@@ -66,5 +66,9 @@
 		</logger>
 	</springProfile>
 
+	<root level="ERROR">
+		<appender-ref ref="CONSOLE"/>
+	</root>
+
 	<jmxConfigurator/>
 </configuration>

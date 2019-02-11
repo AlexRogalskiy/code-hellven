@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import java.util.*
 
 internal interface TaskRepository : MongoRepository<TaskEntity, String> {
+    fun findByCreatorName(creatorName: String) : List<TaskEntity>
+
     fun findByNameIgnoreCase(name: String): Optional<TaskEntity>
 
     fun findByNameStartingWithIgnoreCase(name: String, page: Pageable): Page<TaskEntity>

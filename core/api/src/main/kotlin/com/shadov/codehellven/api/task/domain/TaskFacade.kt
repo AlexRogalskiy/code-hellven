@@ -7,11 +7,12 @@ import io.vavr.control.Try
 
 internal class TaskFacade(private val taskRepository: TaskRepository) : TaskApi {
     override fun failure(taskId: String): Either<TaskUpdateException, TaskEntity> {
-        return Try.of {
+       /* return Try.of {
             val saved = taskRepository.findById(taskId).orElseThrow { TaskUpdateException("TaskEntity does not exist") }
             val modified = saved.copy ( failedAttempts = saved.failedAttempts + 1 )
             return@of taskRepository.save(modified)
-        }.toEither(TaskUpdateException())
+        }.toEither(TaskUpdateException())*/
+        return Either.left(TaskUpdateException());
     }
 
 }

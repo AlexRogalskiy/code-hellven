@@ -8,19 +8,19 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 
-@Document
-internal data class UserEntity(
+@Document("users")
+internal class UserEntity(
         @Id
         val userId: String? = null,
-        @DBRef
-        val completedTasks: Set<TaskEntity> = Sets.newHashSet(),
-        @DBRef
-        val likedTasks: Set<TaskEntity> = Sets.newHashSet(),
-        @DBRef
-        val givenUpTasks: Set<TaskEntity> = Sets.newHashSet(),
+        @DBRef(lazy = true)
+        var completedTasks: Set<TaskEntity> = Sets.newHashSet(),
+        @DBRef(lazy = true)
+        var likedTasks: Set<TaskEntity> = Sets.newHashSet(),
+        @DBRef(lazy = true)
+        var givenUpTasks: Set<TaskEntity> = Sets.newHashSet(),
         @Indexed(unique = true)
         val name: String,
-        var lastLoginDate: LocalDateTime = LocalDateTime.now()
+        val lastLoginDate: LocalDateTime = LocalDateTime.now()
 ) {
     fun getReputation(): Int {
         return completedTasks.map(TaskEntity::getReputationWorth).sum()

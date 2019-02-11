@@ -11,8 +11,8 @@ import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document
-internal data class TaskEntity(
+@Document("tasks")
+internal class TaskEntity(
         @Id
         val taskId: String? = null,
         @Indexed
@@ -29,8 +29,8 @@ internal data class TaskEntity(
         val likeCount: Int = 0,
         @Indexed
         val difficulty: Difficulty,
-        @DBRef
-        val solutions: Set<SolutionEntity> = Sets.newHashSet(),
+        @DBRef(lazy = true)
+        var solutions: Set<SolutionEntity> = Sets.newHashSet(),
         val tests: Map<Languages, String> = Maps.newHashMap(),
         val initialCode: Map<Languages, String> = Maps.newHashMap()
 ) {

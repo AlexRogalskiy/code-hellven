@@ -12,8 +12,7 @@
 	<artifactId>api</artifactId>
 
 	<properties>
-		<graphql-spring-boot-starter.version>5.2</graphql-spring-boot-starter.version>
-		<graphql-java-tools.version>5.4.0</graphql-java-tools.version>
+		<graphql-java-tools.version>5.4.1</graphql-java-tools.version>
 	</properties>
 
 	<build>
@@ -48,17 +47,17 @@
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>${graphql-spring-boot-starter.version}</version>
+			<version>${graphql-java-tools.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphiql-spring-boot-starter</artifactId>
-			<version>${graphql-spring-boot-starter.version}</version>
+			<version>${graphql-java-tools.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>voyager-spring-boot-starter</artifactId>
-			<version>${graphql-spring-boot-starter.version}</version>
+			<version>${graphql-java-tools.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>

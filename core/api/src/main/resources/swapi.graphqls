@@ -22,45 +22,45 @@ type User {
 
     lastLoginDate: LocalDateTime!
 
-   # reputation: Int!
+    reputation: Int!
 
-   # completedTasks: [Task]
+    completedTasks: [Task!]
 
-   # likedTasks: [Task]
+    likedTasks: [Task!]
 
-   # givenUpTasks: [Task]
+    givenUpTasks: [Task!]
 }
 
 type Task {
-    #creator: User!
+    creator: User!
 
     name: String!
 
-  #  description: String!
+    description: String!
 
-  #  tags: [String]
+    tags: [String]
 
-  #  active: Boolean!
+    active: Boolean!
 
-  #  failedAttempts: Int!
+    failedAttempts: Int!
 
- #   likeCount: Int!
+    likeCount: Int!
 
-   # difficulty: Difficulty!
+    difficulty: Difficulty!
 
- #   solutions: [Solution]
+    solutions: [Solution!]
 }
 
 type Solution {
     code: String!
 
-   # runningTime: Int!
+     runningTime: Int!
 
-   # language: Language!
+     language: Language!
 
-   # user: User!
+     user: User!
 
-   # task: Task!
+     task: Task!
 }
 
 enum Difficulty {
