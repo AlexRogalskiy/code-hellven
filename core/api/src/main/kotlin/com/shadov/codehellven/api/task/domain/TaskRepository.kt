@@ -7,9 +7,10 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.mongodb.repository.MongoRepository
 import java.util.*
+import io.vavr.collection.List as VavrList
 
 internal interface TaskRepository : MongoRepository<TaskEntity, String> {
-    fun findByCreatorName(creatorName: String) : List<TaskEntity>
+    fun findByCreator(creator: UserEntity) : List<TaskEntity>
 
     fun findByNameIgnoreCase(name: String): Optional<TaskEntity>
 

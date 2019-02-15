@@ -1,8 +1,8 @@
-package com.shadov.codehellven.api.graphql.types
+package com.shadov.codehellven.api.user.entity
 
-import com.shadov.codehellven.api.graphql.asGraphQL
+import com.shadov.codehellven.api.task.entity.Task
 import com.shadov.codehellven.api.task.entity.TaskEntity
-import com.shadov.codehellven.api.user.entity.UserEntity
+import com.shadov.codehellven.api.task.entity.asGraphQL
 import io.vavr.kotlin.toVavrList
 import java.time.LocalDateTime
 import io.vavr.collection.List as VavrList

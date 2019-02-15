@@ -1,20 +1,20 @@
 scalar LocalDateTime
 
 type Query {
-    # Find user by name
+    # Find finisher by name
     user(name: String!): User
 
-    # Find tasks created by user
-    createdBy(creator: String!): [Task]
+    # Find tasks created by finisher
+    createdBy(userName: String!): [Task]
 
-    # Find tasks completedBy by user
-    completedBy(completedBy: String!): [Task]
+    # Find tasks completedBy by finisher
+    completedBy(userName: String!): [Task]
 
-    # Find all solutions of user
-    userSolutions(user: String!): [Solution]
+    # Find all solutions of finisher
+    userSolutions(userName: String!): [Solution]
 
     # Find all solutions for task
-    taskSolutions(task: String!): [Solution]
+    taskSolutions(taskName: String!): [Solution]
 }
 
 type User {
@@ -54,13 +54,13 @@ type Task {
 type Solution {
     code: String!
 
-     runningTime: Int!
+    runningTime: Int!
 
-     language: Language!
+    language: Language!
 
-     user: User!
+    finisher: User!
 
-     task: Task!
+    task: Task!
 }
 
 enum Difficulty {

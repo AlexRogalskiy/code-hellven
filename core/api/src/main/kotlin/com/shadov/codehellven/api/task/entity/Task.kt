@@ -1,8 +1,10 @@
-package com.shadov.codehellven.api.graphql.types
+package com.shadov.codehellven.api.task.entity
 
-import com.shadov.codehellven.api.graphql.asGraphQL
+import com.shadov.codehellven.api.solution.entity.Solution
 import com.shadov.codehellven.api.solution.entity.SolutionEntity
-import com.shadov.codehellven.api.task.entity.TaskEntity
+import com.shadov.codehellven.api.solution.entity.asGraphQL
+import com.shadov.codehellven.api.user.entity.User
+import com.shadov.codehellven.api.user.entity.asGraphQL
 import com.shadov.codehellven.common.model.Difficulty
 import io.vavr.kotlin.toVavrList
 import io.vavr.collection.List as VavrList
