@@ -15,6 +15,9 @@ type Query {
 
     # Find all solutions for task
     taskSolutions(taskName: String!): [Solution]
+
+    # Find response associated with specific callbackId - optional since response may not be ready yet
+    codeResponse(callbackId: String!): CodeResponse
 }
 
 type User {
@@ -49,18 +52,52 @@ type Task {
     difficulty: Difficulty!
 
     solutions: [Solution!]
+
+    tests: [CodeSnippet!]
+
+    initialCode: [CodeSnippet!]
 }
 
 type Solution {
-    code: String!
-
     runningTime: Int!
 
-    language: Language!
+    codeSnippet: CodeSnippet!
 
     finisher: User!
 
     task: Task!
+}
+
+type CodeResponse {
+    callbackId: String!
+
+    codeRequest: CodeRequest!
+
+    completed: Boolean!
+
+    output: String!
+
+    errorStream: String!
+
+    runningTime: Int!
+
+    responseDate: LocalDateTime!
+}
+
+type CodeRequest {
+    submitter: User!
+
+    task: Task!
+
+    codeSnippet: CodeSnippet!
+
+    requestDate: LocalDateTime!
+}
+
+type CodeSnippet {
+    code: String!
+
+    language: Language!
 }
 
 enum Difficulty {

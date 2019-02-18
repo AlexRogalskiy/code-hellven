@@ -9,4 +9,9 @@ internal open class CodeConfiguration {
     open fun codeApi(codeRequestRepository: CodeRequestRepository): CodeApi {
         return CodeFacade(codeRequestRepository)
     }
+
+    @Bean
+    open fun codeQuery(codeResponseRepository: CodeResponseRepository): CodeQuery {
+        return CodeQuery(codeResponseRepository)
+    }
 }

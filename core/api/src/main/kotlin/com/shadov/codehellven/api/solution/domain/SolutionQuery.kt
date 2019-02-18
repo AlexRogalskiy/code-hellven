@@ -18,7 +18,7 @@ internal class SolutionQuery(
 
     fun userSolutions(user: String): VavrList<Solution> {
         return userRepository.findByName(user)
-                .map { user -> solutionRepository.findByFinisher(user) }
+                .map(solutionRepository::findByFinisher)
                 .map { it.toVavrList() }
                 .orElseThrow { IllegalArgumentException("User with name = $user was not found") }
                 .map(SolutionEntity::asGraphQL)

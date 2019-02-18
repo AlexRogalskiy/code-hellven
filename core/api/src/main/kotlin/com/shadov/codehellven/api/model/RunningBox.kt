@@ -3,7 +3,7 @@ package com.shadov.codehellven.api.model
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("running-box")
-internal class RunningBoxProperties {
+internal class RunningBox {
     lateinit var mainPath: String
 
     lateinit var scriptsPath: String
