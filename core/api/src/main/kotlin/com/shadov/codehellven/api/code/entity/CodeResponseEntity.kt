@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 
-@Document
+@Document("codeResponses")
 internal class CodeResponseEntity(
         @Id
         var messageId: String? = null,

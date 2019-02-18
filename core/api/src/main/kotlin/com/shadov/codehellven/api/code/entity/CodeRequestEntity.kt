@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 
-@Document
+@Document("codeRequests")
 internal class CodeRequestEntity(
         @Id
         var messageId: String? = null,
