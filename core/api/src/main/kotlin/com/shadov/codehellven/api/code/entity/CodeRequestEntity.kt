@@ -23,6 +23,6 @@ internal class CodeRequestEntity(
         val requestDate: LocalDateTime = LocalDateTime.now()
 )
 
-internal fun CodeRequestEntity.asGraphQL(): CodeRequest {
-    return CodeRequest(this)
+internal fun CodeRequestEntity.asGraphQL(): CodeRequestQL {
+    return CodeRequestQL(this)
 }

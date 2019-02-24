@@ -1,0 +1,27 @@
+type Query {
+    # Find finisher by name
+    user(name: String!): User
+}
+
+type Mutation {
+    # Creates a new user
+    createUser(input: CreateUserInput!): User
+}
+
+input CreateUserInput {
+    name: String!
+}
+
+type User {
+    name: String!
+
+    lastLoginDate: LocalDateTime!
+
+    reputation: Int!
+
+    completedTasks: [Task!]
+
+    likedTasks: [Task!]
+
+    givenUpTasks: [Task!]
+}

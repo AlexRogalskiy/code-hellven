@@ -1,7 +1,7 @@
 package com.shadov.codehellven.api.solution.domain
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.shadov.codehellven.api.solution.entity.Solution
+import com.shadov.codehellven.api.solution.entity.SolutionQL
 import com.shadov.codehellven.api.solution.entity.SolutionEntity
 import com.shadov.codehellven.api.solution.entity.asGraphQL
 import com.shadov.codehellven.api.task.domain.TaskRepository
@@ -16,19 +16,19 @@ internal class SolutionQuery(
         private val userRepository: UserRepository
 ) : GraphQLQueryResolver {
 
-    fun userSolutions(user: String): VavrList<Solution> {
+    fun userSolutions(user: String): VavrList<SolutionQL> {
         return userRepository.findByName(user)
                 .map(solutionRepository::findByFinisher)
                 .map { it.toVavrList() }
-                .orElseThrow { IllegalArgumentException("User with name = $user was not found") }
+                .orElseThrow { IllegalArgumentException("UserQL with name = $user was not found") }
                 .map(SolutionEntity::asGraphQL)
     }
 
-    fun taskSolutions(task: String): VavrList<Solution> {
+    fun taskSolutions(task: String): VavrList<SolutionQL> {
         return taskRepository.findByNameIgnoreCase(task)
                 .map(TaskEntity::solutions)
                 .map { it.toVavrList() }
-                .orElseThrow { IllegalArgumentException("Task with name = $task was not found") }
+                .orElseThrow { IllegalArgumentException("TaskQL with name = $task was not found") }
                 .map(SolutionEntity::asGraphQL)
     }
 }

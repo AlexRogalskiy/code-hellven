@@ -1,0 +1,31 @@
+extend type Query {
+    # Find tasks created by user
+    createdBy(userName: String!): [Task]
+
+    # Find tasks completedBy by user
+    completedBy(userName: String!): [Task]
+}
+
+type Task {
+    creator: User!
+
+    name: String!
+
+    description: String!
+
+    tags: [String]
+
+    active: Boolean!
+
+    failedAttempts: Int!
+
+    likeCount: Int!
+
+    difficulty: Difficulty!
+
+    solutions: [Solution!]
+
+    tests: [CodeSnippet!]
+
+    initialCode: [CodeSnippet!]
+}

@@ -1,0 +1,32 @@
+scalar LocalDateTime
+
+extend type Query {
+    # Find response associated with specific callbackId - optional since response may not be ready yet
+    codeResponse(callbackId: String!): CodeResponse
+}
+
+type CodeResponse {
+    callbackId: String!
+
+    codeRequest: CodeRequest!
+
+    completed: Boolean!
+
+    output: String!
+
+    errorStream: String!
+
+    runningTime: Int!
+
+    responseDate: LocalDateTime!
+}
+
+type CodeRequest {
+    submitter: User!
+
+    task: Task!
+
+    codeSnippet: CodeSnippet!
+
+    requestDate: LocalDateTime!
+}

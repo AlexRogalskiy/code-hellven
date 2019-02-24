@@ -27,6 +27,7 @@ internal class TaskEntity(
         val likeCount: Int = 0,
         @Indexed
         val difficulty: Difficulty,
+        val completedCount: Int = 0,
         @DBRef(lazy = true)
         var solutions: MutableSet<SolutionEntity> = Sets.newHashSet(),
         val tests: MutableSet<CodeSnippet> = Sets.newHashSet(),
@@ -35,12 +36,8 @@ internal class TaskEntity(
     fun getReputationWorth(): Int {
         return difficulty.reputation()
     }
-
-    fun getCompletedCount(): Int {
-        return solutions.size
-    }
 }
 
-internal fun TaskEntity.asGraphQL(): Task {
-    return Task(this)
+internal fun TaskEntity.asGraphQL(): TaskQL {
+    return TaskQL(this)
 }

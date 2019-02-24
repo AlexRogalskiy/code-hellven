@@ -9,4 +9,9 @@ internal open class UserConfiguration {
     open fun userQuery(userRepository: UserRepository): UserQuery {
         return UserQuery(userRepository)
     }
+
+    @Bean
+    open fun userMutation(userRepository: UserRepository): UserMutation {
+        return UserMutation(userRepository)
+    }
 }

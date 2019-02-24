@@ -1,0 +1,19 @@
+extend type Query {
+    # Find all solutions of a user
+    userSolutions(userName: String!): [Solution]
+
+    # Find all solutions for a task
+    taskSolutions(taskName: String!): [Solution]
+}
+
+type Solution {
+    runningTime: Int!
+
+    codeSnippet: CodeSnippet!
+
+    finisher: User!
+
+    task: Task!
+
+    submitDate: LocalDateTime
+}

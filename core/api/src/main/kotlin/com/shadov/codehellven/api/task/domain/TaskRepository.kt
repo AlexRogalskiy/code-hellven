@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import java.util.*
 import io.vavr.collection.List as VavrList
 
-internal interface TaskRepository : MongoRepository<TaskEntity, String> {
+internal interface TaskRepository : MongoRepository<TaskEntity, String>, TaskRepositoryCustom {
     fun findByCreator(creator: UserEntity) : List<TaskEntity>
 
     fun findByNameIgnoreCase(name: String): Optional<TaskEntity>

@@ -22,6 +22,6 @@ internal class CodeResponseEntity(
         val responseDate: LocalDateTime = LocalDateTime.now()
 )
 
-internal fun CodeResponseEntity.asGraphQL(): CodeResponse {
-    return CodeResponse(this)
+internal fun CodeResponseEntity.asGraphQL(): CodeResponseQL {
+    return CodeResponseQL(this)
 }

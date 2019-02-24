@@ -1,0 +1,13 @@
+type CodeSnippet {
+    code: String!
+
+    language: Language!
+}
+
+enum Difficulty {
+    STARTING, EASY, MEDIUM, HARD, GOD
+}
+
+enum Language {
+    JAVA, SCALA
+}

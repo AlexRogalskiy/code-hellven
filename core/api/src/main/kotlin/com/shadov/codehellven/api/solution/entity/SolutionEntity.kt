@@ -7,6 +7,7 @@ import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
+import java.time.LocalDateTime
 
 @Document("solutions")
 internal class SolutionEntity(
@@ -17,9 +18,10 @@ internal class SolutionEntity(
         @DBRef
         val finisher: UserEntity,
         @DBRef
-        val task: TaskEntity
+        val task: TaskEntity,
+        val submitDate: LocalDateTime = LocalDateTime.now()
 )
 
-internal fun SolutionEntity.asGraphQL(): Solution {
-    return Solution(this)
+internal fun SolutionEntity.asGraphQL(): SolutionQL {
+    return SolutionQL(this)
 }

@@ -30,7 +30,3 @@ internal class UserEntity(
         return completedTasks.map(TaskEntity::getReputationWorth).sum()
     }
 }
-
-internal fun UserEntity.asGraphQL(): User {
-    return User(this)
-}

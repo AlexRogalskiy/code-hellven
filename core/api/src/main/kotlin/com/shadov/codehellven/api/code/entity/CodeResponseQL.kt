@@ -2,11 +2,11 @@ package com.shadov.codehellven.api.code.entity
 
 import java.time.LocalDateTime
 
-internal data class CodeResponse(
+internal data class CodeResponseQL(
         private val codeResponseEntity: CodeResponseEntity
 ) {
     val callbackId: String = codeResponseEntity.callbackId
-    val codeRequest: CodeRequest = codeResponseEntity.codeRequest.asGraphQL()
+    val codeRequest: CodeRequestQL = codeResponseEntity.codeRequest.asGraphQL()
     val completed: Boolean = codeResponseEntity.completed
     val errorStream: String = codeResponseEntity.errorStream
     val output: String = codeResponseEntity.output
