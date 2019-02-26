@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-hellven-api
+  labels:
+    expose: "true"
+spec:
+  ports:
+    - port: 80
+      targetPort: 8081
+  type: LoadBalancer

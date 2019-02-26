@@ -1,0 +1,43 @@
+metadata:
+  name: code-hellven-api
+data:
+  application.properties: |-
+    logstash.servers=svc-http-logstash-code-hellven
+
+    spring.data.mongodb.host=mongodb-code-hellven
+    spring.data.mongodb.database=code-hellven
+
+    server.port=8081
+
+    spring.profiles.active=prod
+
+    spring.main.allow-bean-definition-overriding=true
+
+    management.endpoints.web.exposure.include=*
+    management.endpoints.web.base-path=/manage
+
+    spring.boot.admin.client.url=http://spring-management/admin
+    spring.boot.admin.client.instance.name=Code-Hellven
+    spring.boot.admin.client.instance.prefer-ip=true
+
+    keycloak.enabled=true
+    keycloak.auth-server-url=http://svc-http-keycloak-code-hellven-code-hellven.192.168.99.103.nip.io/auth
+    keycloak.realm=master
+    keycloak.resource=code-hellven
+    keycloak.public-client=false
+    keycloak.credentials.secret=5bf610f0-8f84-4a41-946f-14fde5ef42e1
+    keycloak.cors=true
+    keycloak.ssl-required = external
+    keycloak.realm-key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApkDV8h/cCZk4dpL7kiXYX6Ex0YqJyUPin1ihX0GxOEAP19DlZWilTEiVGRRwpguebjKef9c1LXGsz0GhNLsTUk1s4gJXqWOnJwKwOk4A03n/+Y+XPAJsP14dCMFd0x0Panfqc4lBoSZPsHx/Ql+B9zCQ50EDgiJD3n+AB38kwdNgVQ0f6qf2ZvvCUZRz+ZDVtl+BVGcs8CsELFkDz/xNnu6SNpmXcQYTdFjf0uyUJJaWhKjrc2tny6wMWRPfXRizrI09YXxHGynkOjiejFWdAnzZ2bGJMDIFdBWMnuZBotoJQc7IBJvLjG8sJ8T+VYLODf2I1o9dyKaHD5FpSjkwNQIDAQAB
+
+    keycloak.security-constraints[0].authRoles[0]=*
+    keycloak.security-constraints[0].securityCollections[0].patterns[0]=/api/*
+
+    keycloak.security-constraints[1].authRoles[0]=actuator
+    keycloak.security-constraints[1].securityCollections[0].patterns[0]=/manage/*
+
+    keycloak.security-constraints[2].securityCollections[0].patterns[0]=/manage/health
+    keycloak.security-constraints[2].securityCollections[0].patterns[1]=/manage/info
+
+    keycloak.security-constraints[3].securityCollections[0].patterns[0]=/manage/loggers/*
+    keycloak.security-constraints[3].securityCollections[0].omitted-methods[0]=POST
