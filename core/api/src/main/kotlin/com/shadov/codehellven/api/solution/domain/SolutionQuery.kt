@@ -20,7 +20,7 @@ internal class SolutionQuery(
         return userRepository.findByName(user)
                 .map(solutionRepository::findByFinisher)
                 .map { it.toVavrList() }
-                .orElseThrow { IllegalArgumentException("UserQL with name = $user was not found") }
+                .orElseThrow { IllegalArgumentException("User with name = $user was not found") }
                 .map(SolutionEntity::asGraphQL)
     }
 
@@ -28,7 +28,7 @@ internal class SolutionQuery(
         return taskRepository.findByNameIgnoreCase(task)
                 .map(TaskEntity::solutions)
                 .map { it.toVavrList() }
-                .orElseThrow { IllegalArgumentException("TaskQL with name = $task was not found") }
+                .orElseThrow { IllegalArgumentException("Task with name = $task was not found") }
                 .map(SolutionEntity::asGraphQL)
     }
 }

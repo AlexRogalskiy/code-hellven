@@ -10,7 +10,14 @@
 	<property name="FILE_LOG_PATTERN"
 			  value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%X{principal}] [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
 
-	<property resource="application.properties"/>
+	<if condition='isDefined("SPRING_CONFIG_LOCATION")'>
+		<then>
+			<property file="${SPRING_CONFIG_LOCATION}" />
+		</then>
+		<else>
+			<property resource="application.properties" />
+		</else>
+	</if>
 
 	<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
@@ -52,6 +59,12 @@
 		<logger name="com.shadov.codehellven.api.code" level="DEBUG" additivity="false">
 			<appender-ref ref="CONSOLE"/>
 		</logger>
+		<logger name="org.springframework.data.mongodb.core.MongoTemplate" level="TRACE" additivity="false">
+			<appender-ref ref="CONSOLE"/>
+		</logger>
+		<root level="INFO">
+			<appender-ref ref="CONSOLE"/>
+		</root>
 	</springProfile>
 	<springProfile name="integration, prod">
 		<logger name="com.shadov.codehellven" level="DEBUG" additivity="false">
@@ -62,15 +75,11 @@
 			<appender-ref ref="STASH"/>
 			<appender-ref ref="CONSOLE"/>
 		</logger>
-		<logger name="org.springframework.data.mongodb.core.MongoTemplate" level="TRACE" additivity="false">
+		<root level="INFO">
 			<appender-ref ref="STASH"/>
 			<appender-ref ref="CONSOLE"/>
-		</logger>
+		</root>
 	</springProfile>
-
-	<root level="INFO">
-		<appender-ref ref="CONSOLE"/>
-	</root>
 
 	<jmxConfigurator/>
 </configuration>

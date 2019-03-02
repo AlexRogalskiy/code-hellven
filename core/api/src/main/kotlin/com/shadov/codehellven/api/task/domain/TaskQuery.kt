@@ -14,7 +14,7 @@ internal class TaskQuery(private val taskRepository: TaskRepository, private val
         return userRepository.findByName(creator)
                 .map(taskRepository::findByCreator)
                 .map { it.toVavrList() }
-                .orElseThrow { IllegalArgumentException("UserQL with name = $creator not found") }
+                .orElseThrow { IllegalArgumentException("User with name = $creator not found") }
                 .map(TaskEntity::asGraphQL)
     }
 
@@ -22,7 +22,7 @@ internal class TaskQuery(private val taskRepository: TaskRepository, private val
         return userRepository.findByName(completedBy)
                 .map(UserEntity::completedTasks)
                 .map { it.toVavrList() }
-                .orElseThrow { IllegalArgumentException("UserQL with name = $completedBy not found") }
+                .orElseThrow { IllegalArgumentException("User with name = $completedBy not found") }
                 .map(TaskEntity::asGraphQL)
     }
 }

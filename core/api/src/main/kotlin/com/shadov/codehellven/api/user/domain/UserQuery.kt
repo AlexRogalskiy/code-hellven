@@ -10,7 +10,7 @@ internal class UserQuery(private val userRepository: UserRepository) : GraphQLQu
     fun user(name: String): UserQL {
         return userRepository.findByName(name)
                 .map(UserEntity::asGraphQL)
-                .orElseThrow { IllegalArgumentException("UserQL with name = $name not found") }
+                .orElseThrow { IllegalArgumentException("User with name = $name not found") }
 
     }
 }

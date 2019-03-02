@@ -14,7 +14,14 @@
 	<name>code-hellven-api</name>
 
 	<properties>
-		<graphql-java-tools.version>5.4.1</graphql-java-tools.version>
+		<graphql.version>5.4.1</graphql.version>
+		<graphql-datetime-spring-boot-starter.version>1.4.0</graphql-datetime-spring-boot-starter.version>
+		<common.version>1.0.0</common.version>
+		<vavr.version>0.9.2</vavr.version>
+		<janino.version>3.0.6</janino.version>
+		<jackson.version>2.9.8</jackson.version>
+		<keycloak.version>4.4.0.Final</keycloak.version>
+		<spring-boot-admin-starter-client.version>2.1.2</spring-boot-admin-starter-client.version>
 	</properties>
 
 	<profiles>
@@ -47,6 +54,15 @@
 			</dependencies>
 
 			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<excludes>
+							<exclude>*.properties</exclude>
+						</excludes>
+						<filtering>false</filtering>
+					</resource>
+				</resources>
 				<plugins>
 					<plugin>
 						<groupId>io.fabric8</groupId>
@@ -89,7 +105,7 @@
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
-			<version>2.1.2</version>
+			<version>${spring-boot-admin-starter-client.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jolokia</groupId>
@@ -99,27 +115,27 @@
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>${graphql-java-tools.version}</version>
+			<version>${graphql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphiql-spring-boot-starter</artifactId>
-			<version>${graphql-java-tools.version}</version>
+			<version>${graphql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>voyager-spring-boot-starter</artifactId>
-			<version>${graphql-java-tools.version}</version>
+			<version>${graphql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-java-tools</artifactId>
-			<version>${graphql-java-tools.version}</version>
+			<version>${graphql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.zhokhov.graphql</groupId>
 			<artifactId>graphql-datetime-spring-boot-starter</artifactId>
-			<version>1.4.0</version>
+			<version>${graphql-datetime-spring-boot-starter.version}</version>
 		</dependency>
 
 		<dependency>
@@ -156,24 +172,24 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-kotlin</artifactId>
-			<version>2.9.8</version>
+			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.janino</groupId>
 			<artifactId>janino</artifactId>
-			<version>3.0.6</version>
+			<version>${janino.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>io.vavr</groupId>
 			<artifactId>vavr-jackson</artifactId>
-			<version>0.9.2</version>
+			<version>${vavr.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.shadov.code-hellven</groupId>
 			<artifactId>common</artifactId>
-			<version>1.0.0</version>
+			<version>${common.version}</version>
 		</dependency>
 
 		<dependency>
@@ -187,7 +203,7 @@
 			<dependency>
 				<groupId>org.keycloak.bom</groupId>
 				<artifactId>keycloak-adapter-bom</artifactId>
-				<version>4.4.0.Final</version>
+				<version>${keycloak.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
