@@ -16,8 +16,8 @@ enum SortDirection {
 }
 
 input PageInput {
-    number: Int = 0
-    size: Int = 20
+    number: Int
+    size: Int
 }
 
 type PageOutput {

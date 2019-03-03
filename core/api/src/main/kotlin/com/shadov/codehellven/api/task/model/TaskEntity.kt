@@ -21,6 +21,7 @@ internal class TaskEntity(
         @Indexed(unique = true)
         val name: String,
         val description: String,
+        @Indexed
         val tags: MutableSet<String> = Sets.newHashSet(),
         val active: Boolean = false,
         val failedAttempts: Int = 0,

@@ -35,8 +35,7 @@ internal data class TaskQL(private val taskEntity: TaskEntity) {
 }
 
 internal data class TaskFilter(
-        val hasAnyTag: VavrList<String> = VavrList.empty(),
-        val hasAllTags: VavrList<String> = VavrList.empty(),
+        val anyTag: VavrList<String> = VavrList.empty(),
         val difficulty: Difficulty?,
         val active: Boolean?
 )
@@ -47,5 +46,9 @@ internal data class TaskSort(
 )
 
 enum class TaskSortField(val fieldName: String) {
-    NAME("name"), FAILS("failedAttempts"), LIKES("likeCount"), DIFFICULTY("difficulty")
+    NAME("name"),
+    FAILS("failedAttempts"),
+    LIKES("likeCount"),
+    DIFFICULTY("difficulty"),
+    COMPLETES("completedCount")
 }

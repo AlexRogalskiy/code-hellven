@@ -10,19 +10,18 @@ extend type Query {
 }
 
 input TaskFilter {
-    hasAnyTag: [String!],
-    hasAllTags: [String!],
+    anyTag: [String!],
     difficulty: Difficulty
     active: Boolean
 }
 
 input TaskSort {
     field: TaskSortField!,
-    direction: SortDirection = ASC
+    direction: SortDirection
 }
 
 enum TaskSortField {
-    NAME, FAILS, LIKES, DIFFICULTY
+    NAME, FAILS, LIKES, DIFFICULTY, COMPLETES
 }
 
 type PagedTasks {

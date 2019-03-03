@@ -4,8 +4,8 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 
 internal data class PageInput(
-        val size: Int,
-        val number: Int
+        val size: Int = 20,
+        val number: Int = 0
 )
 
 internal fun PageInput.asRequest(): PageRequest {

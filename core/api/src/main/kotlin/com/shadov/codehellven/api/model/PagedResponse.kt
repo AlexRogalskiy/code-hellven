@@ -13,7 +13,7 @@ internal fun <T> Page<T>.asPagedResponse(): PagedResponse<T> {
     return PagedResponse(
             content = this.content.toVavrList(),
             page = PageOutput(
-                    totalElements = this.numberOfElements,
+                    totalElements = this.totalElements.toInt(),
                     totalPages = this.totalPages,
                     number = this.number,
                     size = this.size,

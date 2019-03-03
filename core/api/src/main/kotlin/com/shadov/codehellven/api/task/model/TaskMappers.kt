@@ -1,6 +1,5 @@
 package com.shadov.codehellven.api.task.model
 
-import com.fasterxml.jackson.databind.util.ArrayBuilders
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.Predicate
 import io.vavr.collection.List
@@ -19,14 +18,17 @@ internal fun List<TaskSort>.asSort(): Sort {
 }
 
 internal fun TaskFilter.toPredicate(): Predicate {
-    val taskEntity = QTaskEntity("task")
+    val taskEntity = QTaskEntity.taskEntity
     val where = BooleanBuilder()
 
-    if(this.active != null)
+    if (this.active != null)
         where.and(taskEntity.active.eq(this.active))
 
-    if(this.difficulty != null)
+    if (this.difficulty != null)
         where.and(taskEntity.difficulty.eq(this.difficulty))
-    println(where)
+
+    if (this.anyTag.nonEmpty())
+        where.and(taskEntity.tags.any().`in`(this.anyTag.toJavaList()))
+
     return where
 }
