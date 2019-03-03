@@ -1,5 +1,6 @@
 package com.shadov.codehellven.api.code.model
 
+import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.DBRef
@@ -9,9 +10,9 @@ import java.time.LocalDateTime
 @Document("codeResponses")
 internal class CodeResponseEntity(
         @Id
-        var messageId: String? = null,
+        var messageId: ObjectId? = null,
         @Indexed
-        val callbackId: String,
+        val callbackId: ObjectId,
         @DBRef
         val codeRequest: CodeRequestEntity,
         @Indexed

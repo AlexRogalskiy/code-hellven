@@ -1,9 +1,30 @@
 extend type Query {
-    # Find all solutions of a user
-    userSolutions(userName: String!): [Solution]
+    # Find all solutions
+    searchSolutions(filter: SolutionFilter = {}, sort: [SolutionSort] = [{field: SUBMIT_DATE}, {field: RUNNING_TIME}], page: PageInput = {number: 0, size: 20}): PagedSolutions!
+}
 
-    # Find all solutions for a task
-    taskSolutions(taskName: String!): [Solution]
+input SolutionFilter {
+    finisherName: String,
+    taskName: String,
+    language: Language,
+    runningLongerThan: Int
+    runningShorterThan: Int
+    submittedAfter: LocalDateTime
+    submittedBefore: LocalDateTime
+}
+
+input SolutionSort {
+    field: SolutionSortField!,
+    direction: SortDirection
+}
+
+enum SolutionSortField {
+    RUNNING_TIME, SUBMIT_DATE, LANGUAGE
+}
+
+type PagedSolutions {
+    page: PageOutput!
+    content: [Solution]
 }
 
 type Solution {

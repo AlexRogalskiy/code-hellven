@@ -1,12 +1,6 @@
 extend type Query {
     # Find all tasks
-    all(filter: TaskFilter = {}, sort: [TaskSort] = [{field: NAME}, {field: DIFFICULTY}], page: PageInput = {number: 0, size: 20}): PagedTasks!
-
-    # Find tasks created by user
-    createdBy(userName: String!): [Task]
-
-    # Find tasks completedBy by user
-    completedBy(userName: String!): [Task]
+    searchTasks(filter: TaskFilter = {}, sort: [TaskSort] = [{field: NAME}, {field: DIFFICULTY}], page: PageInput = {number: 0, size: 20}): PagedTasks!
 }
 
 input TaskFilter {

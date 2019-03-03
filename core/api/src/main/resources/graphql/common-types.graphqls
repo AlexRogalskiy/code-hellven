@@ -21,10 +21,10 @@ input PageInput {
 }
 
 type PageOutput {
-    number: Int
-    size: Int
-    totalPages: Int
-    totalElements: Int
-    hasNext: Boolean
-    hasPrevious: Boolean
+    number: Int!
+    size: Int!
+    totalPages: Int!
+    totalElements: Int!
+    hasNext: Boolean!
+    hasPrevious: Boolean!
 }

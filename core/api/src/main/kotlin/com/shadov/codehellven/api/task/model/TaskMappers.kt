@@ -2,7 +2,7 @@ package com.shadov.codehellven.api.task.model
 
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.Predicate
-import io.vavr.collection.List
+import io.vavr.collection.List as VavrList
 import org.springframework.data.domain.Sort
 
 internal fun TaskEntity.asGraphQL(): TaskQL {
@@ -13,7 +13,7 @@ private fun TaskSort.asOrder(): Sort.Order {
     return Sort.Order(direction.asDirection(), field.fieldName)
 }
 
-internal fun List<TaskSort>.asSort(): Sort {
+internal fun VavrList<TaskSort>.asSort(): Sort {
     return Sort(this.map { it.asOrder() }.toJavaList())
 }
 

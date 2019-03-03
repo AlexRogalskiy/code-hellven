@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 internal data class CodeResponseQL(
         private val codeResponseEntity: CodeResponseEntity
 ) {
-    val callbackId: String = codeResponseEntity.callbackId
+    val callbackId: String = codeResponseEntity.callbackId.toHexString()
     val codeRequest: CodeRequestQL = codeResponseEntity.codeRequest.asGraphQL()
     val completed: Boolean = codeResponseEntity.completed
     val errorStream: String = codeResponseEntity.errorStream

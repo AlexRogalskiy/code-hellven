@@ -17,7 +17,7 @@ internal class UserRepositoryImpl(
         return Try.of {
             mongoOperations.updateFirst(
                     Query(Criteria.where("userId").`is`(solution.finisher.userId)),
-                    Update().addToSet("completedTasks", solution.task),
+                    Update().addToSet("completedTasks", solution.task).addToSet("solutions", solution),
                     UserEntity::class
             )
         }

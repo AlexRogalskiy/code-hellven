@@ -1,7 +1,10 @@
 package com.shadov.codehellven.api.user.model
 
-import com.shadov.codehellven.api.task.model.TaskQL
+import com.shadov.codehellven.api.solution.model.SolutionEntity
+import com.shadov.codehellven.api.solution.model.SolutionQL
+import com.shadov.codehellven.api.solution.model.asGraphQL
 import com.shadov.codehellven.api.task.model.TaskEntity
+import com.shadov.codehellven.api.task.model.TaskQL
 import com.shadov.codehellven.api.task.model.asGraphQL
 import io.vavr.kotlin.toVavrList
 import java.time.LocalDateTime
@@ -15,6 +18,9 @@ internal data class UserQL(private val userEntity: UserEntity) {
         userEntity.getReputation()
     }
 
+    val solutions: VavrList<SolutionQL> by lazy {
+        userEntity.solutions.toVavrList().map(SolutionEntity::asGraphQL)
+    }
     val completedTasks: VavrList<TaskQL> by lazy {
         userEntity.completedTasks.toVavrList().map(TaskEntity::asGraphQL)
     }

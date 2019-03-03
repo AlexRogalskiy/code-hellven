@@ -1,6 +1,7 @@
 package com.shadov.codehellven.api.user.model
 
 import com.google.common.collect.Sets
+import com.shadov.codehellven.api.solution.model.SolutionEntity
 import com.shadov.codehellven.api.task.model.TaskEntity
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
@@ -16,6 +17,8 @@ import io.vavr.collection.Map as VavrMap
 internal class UserEntity(
         @Id
         var userId: ObjectId? = null,
+        @DBRef(lazy = true)
+        var solutions: MutableSet<SolutionEntity> = Sets.newHashSet(),
         @DBRef(lazy = true)
         var completedTasks: MutableSet<TaskEntity> = Sets.newHashSet(),
         @DBRef(lazy = true)

@@ -15,6 +15,7 @@ import io.vavr.collection.Set as VavrSet
 
 internal data class TaskQL(private val taskEntity: TaskEntity) {
     val name: String = taskEntity.name
+    val creator: UserQL = taskEntity.creator.asGraphQL()
     val description: String = taskEntity.description
     val tags: VavrList<String> = taskEntity.tags.toVavrList()
     val active: Boolean = taskEntity.active
@@ -24,10 +25,6 @@ internal data class TaskQL(private val taskEntity: TaskEntity) {
     val tests: VavrSet<CodeSnippet> = taskEntity.tests.toVavrSet()
     val initialCode: VavrSet<CodeSnippet> = taskEntity.initialCode.toVavrSet()
     val completedCount: Int = taskEntity.completedCount
-
-    val creator: UserQL by lazy {
-        taskEntity.creator.asGraphQL()
-    }
 
     val solutions: VavrList<SolutionQL> by lazy {
         taskEntity.solutions.toVavrList().map(SolutionEntity::asGraphQL)

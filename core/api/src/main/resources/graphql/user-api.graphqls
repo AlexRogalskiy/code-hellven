@@ -19,6 +19,8 @@ type User {
 
     reputation: Int!
 
+    solutions: [Solution!]
+
     completedTasks: [Task!]
 
     likedTasks: [Task!]
