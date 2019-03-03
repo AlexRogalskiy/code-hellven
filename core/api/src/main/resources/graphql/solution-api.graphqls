@@ -1,6 +1,6 @@
 extend type Query {
     # Find all solutions
-    searchSolutions(filter: SolutionFilter = {}, sort: [SolutionSort] = [{field: SUBMIT_DATE}, {field: RUNNING_TIME}], page: PageInput = {number: 0, size: 20}): PagedSolutions!
+    searchSolutions(filter: SolutionFilter = {}, sort: [SolutionSort!] = [{field: SUBMIT_DATE}, {field: RUNNING_TIME}], page: PageInput = {number: 0, size: 20}): PagedSolutions!
 }
 
 input SolutionFilter {
@@ -24,7 +24,7 @@ enum SolutionSortField {
 
 type PagedSolutions {
     page: PageOutput!
-    content: [Solution]
+    content: [Solution!]
 }
 
 type Solution {
@@ -36,5 +36,5 @@ type Solution {
 
     task: Task!
 
-    submitDate: LocalDateTime
+    submitDate: LocalDateTime!
 }

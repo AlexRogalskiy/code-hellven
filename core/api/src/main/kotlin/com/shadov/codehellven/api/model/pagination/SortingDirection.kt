@@ -1,4 +1,4 @@
-package com.shadov.codehellven.api.model
+package com.shadov.codehellven.api.model.pagination
 
 import org.springframework.data.domain.Sort
 

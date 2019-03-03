@@ -1,4 +1,4 @@
-package com.shadov.codehellven.api.model
+package com.shadov.codehellven.api.model.pagination
 
 internal data class PageOutput(
         val size: Int,

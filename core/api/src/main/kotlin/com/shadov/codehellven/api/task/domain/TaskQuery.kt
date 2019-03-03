@@ -1,10 +1,10 @@
 package com.shadov.codehellven.api.task.domain
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.shadov.codehellven.api.model.PageInput
-import com.shadov.codehellven.api.model.PagedResponse
-import com.shadov.codehellven.api.model.asPagedResponse
-import com.shadov.codehellven.api.model.asRequest
+import com.shadov.codehellven.api.model.pagination.PageInput
+import com.shadov.codehellven.api.model.pagination.PagedResponse
+import com.shadov.codehellven.api.model.pagination.asPagedResponse
+import com.shadov.codehellven.api.model.pagination.asRequest
 import com.shadov.codehellven.api.task.model.*
 import com.shadov.codehellven.api.user.domain.UserRepository
 import io.vavr.collection.List as VavrList

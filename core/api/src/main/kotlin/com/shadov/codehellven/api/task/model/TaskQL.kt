@@ -1,7 +1,7 @@
 package com.shadov.codehellven.api.task.model
 
 import com.shadov.codehellven.api.model.CodeSnippet
-import com.shadov.codehellven.api.model.SortingDirection
+import com.shadov.codehellven.api.model.pagination.SortingDirection
 import com.shadov.codehellven.api.solution.model.SolutionEntity
 import com.shadov.codehellven.api.solution.model.SolutionQL
 import com.shadov.codehellven.api.solution.model.asGraphQL
