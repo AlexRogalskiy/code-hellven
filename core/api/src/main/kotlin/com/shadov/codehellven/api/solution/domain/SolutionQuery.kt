@@ -1,11 +1,11 @@
 package com.shadov.codehellven.api.solution.domain
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.shadov.codehellven.api.solution.entity.SolutionQL
-import com.shadov.codehellven.api.solution.entity.SolutionEntity
-import com.shadov.codehellven.api.solution.entity.asGraphQL
+import com.shadov.codehellven.api.solution.model.SolutionQL
+import com.shadov.codehellven.api.solution.model.SolutionEntity
+import com.shadov.codehellven.api.solution.model.asGraphQL
 import com.shadov.codehellven.api.task.domain.TaskRepository
-import com.shadov.codehellven.api.task.entity.TaskEntity
+import com.shadov.codehellven.api.task.model.TaskEntity
 import com.shadov.codehellven.api.user.domain.UserRepository
 import io.vavr.kotlin.toVavrList
 import io.vavr.collection.List as VavrList

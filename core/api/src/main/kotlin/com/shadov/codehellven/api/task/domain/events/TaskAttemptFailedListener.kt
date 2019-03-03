@@ -1,6 +1,6 @@
 package com.shadov.codehellven.api.task.domain.events
 
-import com.shadov.codehellven.api.code.entity.CodeResponseEntity
+import com.shadov.codehellven.api.code.model.CodeResponseEntity
 import com.shadov.codehellven.api.task.domain.TaskRepository
 import com.shadov.codehellven.common.lazyLogger
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener

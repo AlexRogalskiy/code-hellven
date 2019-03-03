@@ -1,8 +1,9 @@
 package com.shadov.codehellven.api.user.domain
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.shadov.codehellven.api.user.entity.UserQL
-import com.shadov.codehellven.api.user.entity.UserEntity
+import com.shadov.codehellven.api.user.model.UserQL
+import com.shadov.codehellven.api.user.model.UserEntity
+import com.shadov.codehellven.api.user.model.asGraphQL
 import io.vavr.collection.List as VavrList
 
 internal class UserQuery(private val userRepository: UserRepository) : GraphQLQueryResolver {

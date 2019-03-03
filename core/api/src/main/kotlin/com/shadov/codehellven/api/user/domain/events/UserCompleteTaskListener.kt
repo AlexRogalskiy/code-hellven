@@ -1,6 +1,6 @@
 package com.shadov.codehellven.api.user.domain.events
 
-import com.shadov.codehellven.api.solution.entity.SolutionEntity
+import com.shadov.codehellven.api.solution.model.SolutionEntity
 import com.shadov.codehellven.api.user.domain.UserRepository
 import com.shadov.codehellven.common.lazyLogger
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener

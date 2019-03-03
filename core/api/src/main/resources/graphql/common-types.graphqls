@@ -1,6 +1,5 @@
 type CodeSnippet {
     code: String!
-
     language: Language!
 }
 
@@ -10,4 +9,22 @@ enum Difficulty {
 
 enum Language {
     JAVA, SCALA
+}
+
+enum SortDirection {
+    ASC, DESC
+}
+
+input PageInput {
+    number: Int = 0
+    size: Int = 20
+}
+
+type PageOutput {
+    number: Int
+    size: Int
+    totalPages: Int
+    totalElements: Int
+    hasNext: Boolean
+    hasPrevious: Boolean
 }

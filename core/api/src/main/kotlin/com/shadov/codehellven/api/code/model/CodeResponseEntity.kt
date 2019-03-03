@@ -1,4 +1,4 @@
-package com.shadov.codehellven.api.code.entity
+package com.shadov.codehellven.api.code.model
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed

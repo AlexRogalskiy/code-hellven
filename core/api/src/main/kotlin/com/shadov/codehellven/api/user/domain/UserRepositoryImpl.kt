@@ -1,8 +1,8 @@
 package com.shadov.codehellven.api.user.domain
 
 import com.mongodb.client.result.UpdateResult
-import com.shadov.codehellven.api.solution.entity.SolutionEntity
-import com.shadov.codehellven.api.user.entity.UserEntity
+import com.shadov.codehellven.api.solution.model.SolutionEntity
+import com.shadov.codehellven.api.user.model.UserEntity
 import io.vavr.control.Try
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria

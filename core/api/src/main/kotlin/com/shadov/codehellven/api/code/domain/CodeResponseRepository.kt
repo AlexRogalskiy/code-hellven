@@ -1,7 +1,7 @@
 package com.shadov.codehellven.api.code.domain
 
 
-import com.shadov.codehellven.api.code.entity.CodeResponseEntity
+import com.shadov.codehellven.api.code.model.CodeResponseEntity
 import org.springframework.data.mongodb.repository.MongoRepository
 import java.util.*
 

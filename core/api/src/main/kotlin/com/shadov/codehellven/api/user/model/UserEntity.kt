@@ -1,7 +1,7 @@
-package com.shadov.codehellven.api.user.entity
+package com.shadov.codehellven.api.user.model
 
 import com.google.common.collect.Sets
-import com.shadov.codehellven.api.task.entity.TaskEntity
+import com.shadov.codehellven.api.task.model.TaskEntity
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed

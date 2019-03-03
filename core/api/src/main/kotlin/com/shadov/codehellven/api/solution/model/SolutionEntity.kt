@@ -1,8 +1,8 @@
-package com.shadov.codehellven.api.solution.entity
+package com.shadov.codehellven.api.solution.model
 
 import com.shadov.codehellven.api.model.CodeSnippet
-import com.shadov.codehellven.api.task.entity.TaskEntity
-import com.shadov.codehellven.api.user.entity.UserEntity
+import com.shadov.codehellven.api.task.model.TaskEntity
+import com.shadov.codehellven.api.user.model.UserEntity
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
@@ -21,7 +21,3 @@ internal class SolutionEntity(
         val task: TaskEntity,
         val submitDate: LocalDateTime = LocalDateTime.now()
 )
-
-internal fun SolutionEntity.asGraphQL(): SolutionQL {
-    return SolutionQL(this)
-}

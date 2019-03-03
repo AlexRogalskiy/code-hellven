@@ -1,9 +1,9 @@
-package com.shadov.codehellven.api.task.entity
+package com.shadov.codehellven.api.task.model
 
 import com.google.common.collect.Sets
 import com.shadov.codehellven.api.model.CodeSnippet
-import com.shadov.codehellven.api.solution.entity.SolutionEntity
-import com.shadov.codehellven.api.user.entity.UserEntity
+import com.shadov.codehellven.api.solution.model.SolutionEntity
+import com.shadov.codehellven.api.user.model.UserEntity
 import com.shadov.codehellven.common.model.Difficulty
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
@@ -36,8 +36,4 @@ internal class TaskEntity(
     fun getReputationWorth(): Int {
         return difficulty.reputation()
     }
-}
-
-internal fun TaskEntity.asGraphQL(): TaskQL {
-    return TaskQL(this)
 }

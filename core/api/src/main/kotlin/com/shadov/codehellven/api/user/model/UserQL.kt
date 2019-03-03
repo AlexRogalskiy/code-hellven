@@ -1,8 +1,8 @@
-package com.shadov.codehellven.api.user.entity
+package com.shadov.codehellven.api.user.model
 
-import com.shadov.codehellven.api.task.entity.TaskQL
-import com.shadov.codehellven.api.task.entity.TaskEntity
-import com.shadov.codehellven.api.task.entity.asGraphQL
+import com.shadov.codehellven.api.task.model.TaskQL
+import com.shadov.codehellven.api.task.model.TaskEntity
+import com.shadov.codehellven.api.task.model.asGraphQL
 import io.vavr.kotlin.toVavrList
 import java.time.LocalDateTime
 import io.vavr.collection.List as VavrList
@@ -25,3 +25,7 @@ internal data class UserQL(private val userEntity: UserEntity) {
         userEntity.givenUpTasks.toVavrList().map(TaskEntity::asGraphQL)
     }
 }
+
+internal data class CreateUserInput(
+        val name: String
+)

@@ -1,10 +1,10 @@
-package com.shadov.codehellven.api.code.entity
+package com.shadov.codehellven.api.code.model
 
 import com.shadov.codehellven.api.model.CodeSnippet
-import com.shadov.codehellven.api.task.entity.TaskQL
-import com.shadov.codehellven.api.task.entity.asGraphQL
-import com.shadov.codehellven.api.user.domain.asGraphQL
-import com.shadov.codehellven.api.user.entity.UserQL
+import com.shadov.codehellven.api.task.model.TaskQL
+import com.shadov.codehellven.api.task.model.asGraphQL
+import com.shadov.codehellven.api.user.model.asGraphQL
+import com.shadov.codehellven.api.user.model.UserQL
 import java.time.LocalDateTime
 
 internal data class CodeRequestQL(

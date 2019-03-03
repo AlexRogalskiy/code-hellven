@@ -1,8 +1,8 @@
-package com.shadov.codehellven.api.code.entity
+package com.shadov.codehellven.api.code.model
 
 import com.shadov.codehellven.api.model.CodeSnippet
-import com.shadov.codehellven.api.task.entity.TaskEntity
-import com.shadov.codehellven.api.user.entity.UserEntity
+import com.shadov.codehellven.api.task.model.TaskEntity
+import com.shadov.codehellven.api.user.model.UserEntity
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.DBRef

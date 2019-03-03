@@ -1,9 +1,9 @@
 package com.shadov.codehellven.api.code.domain
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.shadov.codehellven.api.code.entity.CodeResponseQL
-import com.shadov.codehellven.api.code.entity.CodeResponseEntity
-import com.shadov.codehellven.api.code.entity.asGraphQL
+import com.shadov.codehellven.api.code.model.CodeResponseQL
+import com.shadov.codehellven.api.code.model.CodeResponseEntity
+import com.shadov.codehellven.api.code.model.asGraphQL
 import io.vavr.collection.List as VavrList
 
 internal class CodeQuery(

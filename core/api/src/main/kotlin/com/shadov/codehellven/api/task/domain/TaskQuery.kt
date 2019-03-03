@@ -1,15 +1,23 @@
 package com.shadov.codehellven.api.task.domain
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.shadov.codehellven.api.task.entity.TaskQL
-import com.shadov.codehellven.api.task.entity.TaskEntity
-import com.shadov.codehellven.api.task.entity.asGraphQL
+import com.shadov.codehellven.api.model.PageInput
+import com.shadov.codehellven.api.model.PagedResponse
+import com.shadov.codehellven.api.model.asPagedResponse
+import com.shadov.codehellven.api.model.asRequest
+import com.shadov.codehellven.api.task.model.*
 import com.shadov.codehellven.api.user.domain.UserRepository
-import com.shadov.codehellven.api.user.entity.UserEntity
+import com.shadov.codehellven.api.user.model.UserEntity
 import io.vavr.kotlin.toVavrList
 import io.vavr.collection.List as VavrList
 
 internal class TaskQuery(private val taskRepository: TaskRepository, private val userRepository: UserRepository) : GraphQLQueryResolver {
+    fun all(filter: TaskFilter, sort: VavrList<TaskSort>, page: PageInput): PagedResponse<TaskQL> {
+        return taskRepository.findAll(filter.toPredicate(), page.asRequest(sort.asSort()))
+                .map(TaskEntity::asGraphQL)
+                .asPagedResponse()
+    }
+
     fun createdBy(creator: String): VavrList<TaskQL> {
         return userRepository.findByName(creator)
                 .map(taskRepository::findByCreator)

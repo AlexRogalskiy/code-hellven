@@ -1,11 +1,12 @@
-package com.shadov.codehellven.api.task.entity
+package com.shadov.codehellven.api.task.model
 
 import com.shadov.codehellven.api.model.CodeSnippet
-import com.shadov.codehellven.api.solution.entity.SolutionQL
-import com.shadov.codehellven.api.solution.entity.SolutionEntity
-import com.shadov.codehellven.api.solution.entity.asGraphQL
-import com.shadov.codehellven.api.user.domain.asGraphQL
-import com.shadov.codehellven.api.user.entity.UserQL
+import com.shadov.codehellven.api.model.SortingDirection
+import com.shadov.codehellven.api.solution.model.SolutionEntity
+import com.shadov.codehellven.api.solution.model.SolutionQL
+import com.shadov.codehellven.api.solution.model.asGraphQL
+import com.shadov.codehellven.api.user.model.UserQL
+import com.shadov.codehellven.api.user.model.asGraphQL
 import com.shadov.codehellven.common.model.Difficulty
 import io.vavr.kotlin.toVavrList
 import io.vavr.kotlin.toVavrSet
@@ -31,4 +32,20 @@ internal data class TaskQL(private val taskEntity: TaskEntity) {
     val solutions: VavrList<SolutionQL> by lazy {
         taskEntity.solutions.toVavrList().map(SolutionEntity::asGraphQL)
     }
+}
+
+internal data class TaskFilter(
+        val hasAnyTag: VavrList<String> = VavrList.empty(),
+        val hasAllTags: VavrList<String> = VavrList.empty(),
+        val difficulty: Difficulty?,
+        val active: Boolean?
+)
+
+internal data class TaskSort(
+        val field: TaskSortField,
+        val direction: SortingDirection = SortingDirection.ASC
+)
+
+enum class TaskSortField(val fieldName: String) {
+    NAME("name"), FAILS("failedAttempts"), LIKES("likeCount"), DIFFICULTY("difficulty")
 }

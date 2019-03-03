@@ -1,9 +1,33 @@
 extend type Query {
+    # Find all tasks
+    all(filter: TaskFilter = {}, sort: [TaskSort] = [{field: NAME}, {field: DIFFICULTY}], page: PageInput = {number: 0, size: 20}): PagedTasks!
+
     # Find tasks created by user
     createdBy(userName: String!): [Task]
 
     # Find tasks completedBy by user
     completedBy(userName: String!): [Task]
+}
+
+input TaskFilter {
+    hasAnyTag: [String!],
+    hasAllTags: [String!],
+    difficulty: Difficulty
+    active: Boolean
+}
+
+input TaskSort {
+    field: TaskSortField!,
+    direction: SortDirection = ASC
+}
+
+enum TaskSortField {
+    NAME, FAILS, LIKES, DIFFICULTY
+}
+
+type PagedTasks {
+    page: PageOutput!
+    content: [Task]
 }
 
 type Task {
