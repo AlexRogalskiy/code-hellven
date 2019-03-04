@@ -18,11 +18,7 @@ internal class CodeResponseEntity(
         @Indexed
         val completed: Boolean,
         val output: String,
-        val errorStream: String,
+        val errorStream: String?,
         val runningTime: Int,
         val responseDate: LocalDateTime = LocalDateTime.now()
 )
-
-internal fun CodeResponseEntity.asGraphQL(): CodeResponseQL {
-    return CodeResponseQL(this)
-}

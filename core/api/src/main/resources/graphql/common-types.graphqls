@@ -3,6 +3,11 @@ type CodeSnippet {
     language: Language!
 }
 
+input CodeSnippetInput {
+    code: String!
+    language: Language!
+}
+
 enum Difficulty {
     STARTING, EASY, MEDIUM, HARD, GOD
 }

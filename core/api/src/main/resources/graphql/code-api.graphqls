@@ -2,7 +2,35 @@ scalar LocalDateTime
 
 extend type Query {
     # Find response associated with specific callbackId
-    codeResponse(callbackId: String!): CodeResponse!
+    findCodeResponse(callbackId: String!): CodeResponse!
+}
+
+extend type Mutation {
+    # Submits a code request
+    submitCodeRequest(input: SubmitCodeRequest!): CodeRequest!
+
+    # Accepts a code response, either successful or not
+    acceptCodeResponse(input: AcceptCodeResponse!): CodeResponse!
+}
+
+input SubmitCodeRequest {
+    submitterName: String!
+
+    taskName: String!
+
+    codeSnippet: CodeSnippetInput!
+}
+
+input AcceptCodeResponse {
+    callbackId: String!
+
+    completed: Boolean!
+
+    output: String!
+
+    errorStream: String
+
+    runningTime: Int!
 }
 
 type CodeResponse {
@@ -14,7 +42,7 @@ type CodeResponse {
 
     output: String!
 
-    errorStream: String!
+    errorStream: String
 
     runningTime: Int!
 
@@ -22,6 +50,8 @@ type CodeResponse {
 }
 
 type CodeRequest {
+    callbackId: String!
+
     submitter: User!
 
     task: Task!
