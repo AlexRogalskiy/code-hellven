@@ -1,6 +1,7 @@
 package com.shadov.codehellven.api.solution.domain
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
+import com.shadov.codehellven.api.model.exception.orNotFoundException
 import com.shadov.codehellven.api.model.pagination.PageInput
 import com.shadov.codehellven.api.model.pagination.PagedResponse
 import com.shadov.codehellven.api.model.pagination.asPagedResponse
@@ -19,12 +20,12 @@ internal class SolutionQuery(
     fun searchSolutions(filter: SolutionFilter, sort: VavrList<SolutionSort>, page: PageInput): PagedResponse<SolutionQL> {
         val user = filter.finisherName?.let { userName ->
             userRepository.findByName(userName)
-                    .orElseThrow { IllegalArgumentException("User with name $userName not found") }
+                    .orNotFoundException("User with name $userName not found")
         }
 
         val task = filter.taskName?.let { taskName ->
             taskRepository.findByNameIgnoreCase(taskName)
-                    .orElseThrow { IllegalArgumentException("Task with name $taskName not found") }
+                    .orNotFoundException("Task with name $taskName not found")
         }
 
         return solutionRepository.findAll(filter.toPredicate(user, task), page.asRequest(sort.asSort()))
