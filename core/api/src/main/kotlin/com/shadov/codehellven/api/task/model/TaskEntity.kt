@@ -1,7 +1,7 @@
 package com.shadov.codehellven.api.task.model
 
 import com.google.common.collect.Sets
-import com.shadov.codehellven.api.model.CodeSnippet
+import com.shadov.codehellven.common.model.CodeSnippet
 import com.shadov.codehellven.api.solution.model.SolutionEntity
 import com.shadov.codehellven.api.user.model.UserEntity
 import com.shadov.codehellven.common.model.Difficulty

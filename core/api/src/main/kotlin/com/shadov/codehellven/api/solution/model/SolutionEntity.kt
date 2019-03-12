@@ -1,6 +1,6 @@
 package com.shadov.codehellven.api.solution.model
 
-import com.shadov.codehellven.api.model.CodeSnippet
+import com.shadov.codehellven.common.model.CodeSnippet
 import com.shadov.codehellven.api.task.model.TaskEntity
 import com.shadov.codehellven.api.user.model.UserEntity
 import org.bson.types.ObjectId

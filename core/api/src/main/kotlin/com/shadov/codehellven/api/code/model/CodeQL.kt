@@ -1,6 +1,6 @@
 package com.shadov.codehellven.api.code.model
 
-import com.shadov.codehellven.api.model.CodeSnippet
+import com.shadov.codehellven.common.model.CodeSnippet
 import com.shadov.codehellven.api.task.model.TaskQL
 import com.shadov.codehellven.api.task.model.asGraphQL
 import com.shadov.codehellven.api.user.model.UserQL
