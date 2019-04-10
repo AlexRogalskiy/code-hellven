@@ -10,9 +10,7 @@ import org.springframework.web.client.RestTemplate
 @Configuration
 internal open class CodeConfiguration {
     @Bean
-    open fun codeQuery(
-            codeResponseRepository: CodeResponseRepository
-    ): CodeQuery {
+    open fun codeQuery(codeResponseRepository: CodeResponseRepository): CodeQuery {
         return CodeQuery(codeResponseRepository)
     }
 

@@ -6,4 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 internal interface UserRepository : MongoRepository<UserEntity, String>, UserRepositoryCustom {
     fun findByName(name: String): Option<UserEntity>
+
+    fun existsByName(name: String): Boolean
 }

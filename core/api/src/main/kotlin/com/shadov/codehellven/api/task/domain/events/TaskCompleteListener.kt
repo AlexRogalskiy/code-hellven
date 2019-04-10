@@ -12,6 +12,8 @@ internal class TaskCompleteListener(
     private val log by lazyLogger()
 
     override fun onAfterSave(event: AfterSaveEvent<SolutionEntity>) {
+        log.info("Solution was saved, TaskComplete event called - updating matching task accordingly")
+
         taskRepository.acceptSolution(event.source)
                 .onFailure { ex -> log.error("Could not add solution to task ${event.source.task.name} after solution save", ex) }
     }

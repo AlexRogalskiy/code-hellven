@@ -12,6 +12,5 @@ internal class UserQuery(private val userRepository: UserRepository) : GraphQLQu
         return userRepository.findByName(name)
                 .map(UserEntity::asGraphQL)
                 .orNotFoundException("User with name = $name not found")
-
     }
 }

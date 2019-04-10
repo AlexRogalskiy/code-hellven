@@ -9,6 +9,7 @@ import com.shadov.codehellven.api.model.pagination.asRequest
 import com.shadov.codehellven.api.solution.model.*
 import com.shadov.codehellven.api.task.domain.TaskRepository
 import com.shadov.codehellven.api.user.domain.UserRepository
+import com.shadov.codehellven.common.lazyLogger
 import io.vavr.collection.List as VavrList
 
 internal class SolutionQuery(
@@ -16,8 +17,11 @@ internal class SolutionQuery(
         private val taskRepository: TaskRepository,
         private val userRepository: UserRepository
 ) : GraphQLQueryResolver {
+    private val log by lazyLogger()
 
     fun searchSolutions(filter: SolutionFilter, sort: VavrList<SolutionSort>, page: PageInput): PagedResponse<SolutionQL> {
+        log.info("Searching for solutions with filter = $filter")
+
         val user = filter.finisherName?.let { userName ->
             userRepository.findByName(userName)
                     .orNotFoundException("User with name $userName not found")

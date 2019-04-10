@@ -14,7 +14,11 @@ internal class SolutionUploadedListener(
     private val log by lazyLogger()
 
     override fun onAfterSave(event: AfterSaveEvent<CodeResponseEntity>) {
+        log.info("CodeResponse was saved, SolutionUploaded event called - checking if response was successfully completed")
+
         if (event.source.completed) {
+            log.info("Saved CodeResponse was a successful response, saving Solution")
+
             val codeRequest = event.source.codeRequest
             val solution = SolutionEntity(
                     runningTime = event.source.runningTime,

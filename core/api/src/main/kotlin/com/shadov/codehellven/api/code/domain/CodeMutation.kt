@@ -18,6 +18,8 @@ internal class CodeMutation(
     private val log by lazyLogger()
 
     fun submitCodeRequest(codeRequest: SubmitCodeRequest): CodeRequestQL {
+        log.info("Submitting code request for user = ${codeRequest.submitterName} in task ${codeRequest.taskName}")
+
         val submitter = userRepository.findByName(codeRequest.submitterName)
                 .orNotFoundException("User with name = ${codeRequest.submitterName} not found")
 
@@ -31,13 +33,17 @@ internal class CodeMutation(
                 codeSnipet = savedRequest.codeSnippet
         )
 
+        log.info("CodeRequest saved correctly, sending submission to external system")
+
         return codeService.executeCode(codeSubmission)
                 .map { savedRequest.asGraphQL() }
-                .onFailure { ex -> log.error("Could not run code request", ex) }
+                .onFailure { log.error("Could not run code request", it) }
                 .getOrElseThrow(::CodeExecutionException)
     }
 
     fun acceptCodeResponse(codeResponse: AcceptCodeResponse): CodeResponseQL {
+        log.info("Accepting code response for request with callbackId = ${codeResponse.callbackId}")
+
         val matchingRequest = codeRequestRepository.findById(codeResponse.callbackId)
                 .orNotFoundException("Code request with callbackId = ${codeResponse.callbackId} not found")
 

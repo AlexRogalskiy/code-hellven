@@ -12,7 +12,11 @@ internal class TaskAttemptFailedListener(
     private val log by lazyLogger()
 
     override fun onAfterSave(event: AfterSaveEvent<CodeResponseEntity>) {
+        log.info("CodeResponse was saved, TaskAttemptFailed event called - checking if response was a failed attempt")
+
         if (event.source.completed.not()) {
+            log.info("Saved CodeResponse was a failed attempt, incrementing matching task's failed attempts count")
+
             val task = event.source.codeRequest.task
             taskRepository.failedAttempt(task)
                     .onFailure { ex -> log.error("Could not add failed attempt to task ${task.name}", ex) }
